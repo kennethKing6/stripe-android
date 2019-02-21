@@ -12,8 +12,11 @@ import org.json.JSONObject;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import static com.stripe.android.model.StripeJsonUtils.optInteger;
 import static com.stripe.android.model.StripeJsonUtils.optString;
@@ -38,18 +41,32 @@ public class SourceCardData extends StripeSourceTypeModel {
     public static final String NOT_SUPPORTED = "not_supported";
     public static final String UNKNOWN = "unknown";
 
-    public static final String FIELD_ADDRESS_LINE1_CHECK = "address_line1_check";
-    public static final String FIELD_ADDRESS_ZIP_CHECK = "address_zip_check";
-    public static final String FIELD_BRAND = "brand";
-    public static final String FIELD_COUNTRY = "country";
-    public static final String FIELD_CVC_CHECK = "cvc_check";
-    public static final String FIELD_DYNAMIC_LAST4 = "dynamic_last4";
-    public static final String FIELD_EXP_MONTH = "exp_month";
-    public static final String FIELD_EXP_YEAR = "exp_year";
-    public static final String FIELD_FUNDING = "funding";
-    public static final String FIELD_LAST4 = "last4";
-    public static final String FIELD_THREE_D_SECURE = "three_d_secure";
-    public static final String FIELD_TOKENIZATION_METHOD = "tokenization_method";
+    private static final String FIELD_ADDRESS_LINE1_CHECK = "address_line1_check";
+    private static final String FIELD_ADDRESS_ZIP_CHECK = "address_zip_check";
+    private static final String FIELD_BRAND = "brand";
+    private static final String FIELD_COUNTRY = "country";
+    private static final String FIELD_CVC_CHECK = "cvc_check";
+    private static final String FIELD_DYNAMIC_LAST4 = "dynamic_last4";
+    private static final String FIELD_EXP_MONTH = "exp_month";
+    private static final String FIELD_EXP_YEAR = "exp_year";
+    private static final String FIELD_FUNDING = "funding";
+    private static final String FIELD_LAST4 = "last4";
+    private static final String FIELD_THREE_D_SECURE = "three_d_secure";
+    private static final String FIELD_TOKENIZATION_METHOD = "tokenization_method";
+
+    private static final Set<String> STANDARD_FIELDS = new HashSet<>(Arrays.asList(
+            FIELD_ADDRESS_LINE1_CHECK,
+            FIELD_ADDRESS_ZIP_CHECK,
+            FIELD_BRAND,
+            FIELD_COUNTRY,
+            FIELD_CVC_CHECK,
+            FIELD_DYNAMIC_LAST4,
+            FIELD_EXP_MONTH,
+            FIELD_EXP_YEAR,
+            FIELD_FUNDING,
+            FIELD_LAST4,
+            FIELD_THREE_D_SECURE,
+            FIELD_TOKENIZATION_METHOD));
 
     private String mAddressLine1Check;
     private String mAddressZipCheck;
@@ -65,20 +82,7 @@ public class SourceCardData extends StripeSourceTypeModel {
     private String mTokenizationMethod;
 
     private SourceCardData() {
-        super();
-        addStandardFields(
-                FIELD_ADDRESS_LINE1_CHECK,
-                FIELD_ADDRESS_ZIP_CHECK,
-                FIELD_BRAND,
-                FIELD_COUNTRY,
-                FIELD_CVC_CHECK,
-                FIELD_DYNAMIC_LAST4,
-                FIELD_EXP_MONTH,
-                FIELD_EXP_YEAR,
-                FIELD_FUNDING,
-                FIELD_LAST4,
-                FIELD_THREE_D_SECURE,
-                FIELD_TOKENIZATION_METHOD);
+        super(STANDARD_FIELDS);
     }
 
     @Nullable

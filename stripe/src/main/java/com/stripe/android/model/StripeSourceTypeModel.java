@@ -1,13 +1,11 @@
 package com.stripe.android.model;
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -17,20 +15,17 @@ import java.util.Set;
 abstract class StripeSourceTypeModel extends StripeJsonModel {
 
     Map<String, Object> mAdditionalFields;
-    Set<String> mStandardFields = new HashSet<>();
+    @NonNull final Set<String> mStandardFields;
     private static final String NULL = "null";
 
-    StripeSourceTypeModel() {
+    StripeSourceTypeModel(@NonNull Set<String> standardFields) {
         mAdditionalFields = new HashMap<>();
+        mStandardFields = standardFields;
     }
 
     @NonNull
     public Map<String, Object> getAdditionalFields() {
         return mAdditionalFields;
-    }
-
-    void addStandardFields(String... fields) {
-        Collections.addAll(mStandardFields, fields);
     }
 
     void setAdditionalFields(@NonNull Map<String, Object> additionalFields) {
